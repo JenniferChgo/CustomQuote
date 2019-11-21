@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        
+  <title>Home Equity Lending</title>
+
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Our Custom CSS -->
+
+ <link href="css/style.css" rel="stylesheet">
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<style>
+
+.custom-centered{
+ margin:0 auto;
+ width:300px;
+}
+
+.btn-space {
+    margin-left: 25px;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color:cornflowerblue
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: blue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: blue;
+  cursor: pointer;
+}
+
+</style>
+
+
+  <script>
+
+function getStyle(el, name)
+{
+  // the way of the DOM
+  if ( document.defaultView && document.defaultView.getComputedStyle )
+  {
+    var style = document.defaultView.getComputedStyle(el, null);
+    if ( style )
+      return style[name];
+  }
+  // IE-specific
+  else if ( el.currentStyle )
+    return el.currentStyle[name];
+
+  return null;
+}
+
+
+	function storeValues() {
+
+	var zipcode = document.getElementById("zipcode");
+	var propertyvalue = document.getElementById("propertyvalue");
+	
+	var creditScoreSelector = document.getElementById("creditscore");
+	var creditscore = creditScoreSelector.options[creditScoreSelector.selectedIndex].text;
+
+	var propertyTypeSelector = document.getElementById("propertytype");
+	var propertyType = propertyTypeSelector.options[propertyTypeSelector.selectedIndex].text;
+
+	var autoDebitCheck = document.getElementById("autoDebit").checked;
+    var relationshipDiscountCheck = document.getElementById("relationshipDiscount").checked;
+	var firstMortgageCheck = document.getElementById("firstMortgage").checked;
+  	var mortgageBalance = document.getElementById("mortgageBalance");
+	var secondMortgageCheck = document.getElementById("secondMortgage").checked;
+	var secondMortgageBalance = document.getElementById("secondMortgageBalance");
+
+
+	sessionStorage.setItem("autoDebitCheck", autoDebitCheck);
+  	sessionStorage.setItem("relationshipDiscountCheck", relationshipDiscountCheck);
+	sessionStorage.setItem("firstMortgageCheck", firstMortgageCheck);
+	sessionStorage.setItem("mortgageBalance", mortgageBalance.value);
+	sessionStorage.setItem("secondMortgageCheck", secondMortgageCheck);
+	sessionStorage.setItem("secondMortgageBalance", secondMortgageBalance.value);	
+
+	sessionStorage.setItem("zipcode", zipcode.value);
+	sessionStorage.setItem("propertyvalue", propertyvalue.value);
+	sessionStorage.setItem("creditscore", creditscore);
+	sessionStorage.setItem("propertyType", propertyType);
+
+	buildLoanCriteriaObject();
+	window.location.assign("CustomQuote.html")
+	}
+
+	function buildLoanCriteriaObject() {
+
+		theObj = {
+		loanAmount: sessionStorage.getItem("loanAmount"),
+		autoDebitCheck: sessionStorage.getItem("autoDebitCheck"),
+		relationshipDiscountCheck: sessionStorage.getItem("relationshipDiscountCheck"),
+		firstMortgageCheck: sessionStorage.getItem("firstMortgageCheck"),
+		mortgageBalance: sessionStorage.getItem("mortgageBalance"),
+		secondMortgageCheck: sessionStorage.getItem("secondMortgageCheck"),
+		secondMortgageBalance: sessionStorage.getItem("secondMortgageBalance"),
+		zipcode: sessionStorage.getItem("zipcode"),
+		propertyvalue: sessionStorage.getItem("propertyvalue"),
+		creditscore: sessionStorage.getItem("creditscore"),
+		propertyType: sessionStorage.getItem("propertyType")
+		};
+
+		theJSON = JSON.stringify(theObj)
+		sessionStorage.setItem("loanCriteria", theJSON);
+	}
+
+    </script>
+</head>
+
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color:#0079c1;">
+         
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/personal">Personal <span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Wealth</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Business</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Commercial</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Capital Markets</a>
+
+          </div> 
+        </nav>
+		<img src="BankABCLogo.png" alt="" height="100" >
+		        <div class="panel panel-default" style=" background-color: #0079c1;">
+          <div class="panel-body">
+            <div class="text-center" style="color: white">Get a fixed interest rate as low as <b class="banner-font">4.24% APR</b> for up to <b class="banner-font">20 years</b> on a HELOC.<sup>1</sup>
+                  <a href="https://www.bmoharris.com/main/personal/loans-and-lines-of-credit/HELOC-offers/" class="btn btn-danger btn-space" style="color:aliceblue">Learn More</a>
+            </div>
+          </div>
+        </div>
+
+        
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: white;">
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal"><small>Personal</small></a></li>
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal/loans-and-lines-of-credit"><small>Loans and Lines of Credit</small></a></li>
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal/loans-and-lines-of-credit/home-equity-line-of-credit"><small>Home Equity Line of Credit</small></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><small>Custom Quote</small></li>
+        </ol>
+        </nav>
+    
+    <div class="wrapper">
+
+        <!-- Page Content  -->
+        <div id="page-content-wrapper">
+
+            <div class="container-fluid">
+
+          <!--Standard Option-->
+          <div class="card-deck mb-3">
+
+			
+
+            <div class="card mb-4 shadow-lg" style="width: 350px">
+                <div class="card-header">
+                  <h6 class="title"><b>Property Details</b></h6>
+              	</div>
+                <div class="card-body">
+
+						<div class="form-group">
+							<label for="zipcode">Property ZIP code</label>
+							<input type="text" name= "zipcode" class="form-control" id="zipcode"
+							placeholder="My property zipcode is...">
+						</div>
+
+						<div class="form-group">
+						<label for="propertyvalue">Property value</label>
+						<input type="text" name="propertyvalue" class="form-control" id="propertyvalue"
+							placeholder="Enter estimate value of property...">
+						</div>
+
+						<div class="form-group">
+						<label for="propertyType">Property Use</label>
+						<select class="custom-select d-block w-100" id="propertytype" required>
+							<option value="primary">Primary Residence</option>
+							<option value="investment">Investment Property</option>
+							<option value="secondHome">Second Home</option>
+						</select> 
+						<small class="text-muted">I use my propery as...</small> 
+						</div>
+      
+                </div> <!--end card body-->
+            </div>
+				
+
+            <!--Recommended Option-->
+            <div class="card mb-4 shadow-lg" style="width: 350px">
+				<div class="card-header">
+					<h6 class="title"><b>Credit Details</b></h6>
+				</div>
+				<div class="card-body">
+
+					<div class="form-group">
+					<label for="creditScore">Credit Score</label>
+					
+					<select class="custom-select d-block w-100" id="creditscore" required>
+					<option value="1">780+</option>
+					<option value="2">740-799</option>
+					<option value="3">700-739</option>
+					<option value="4">650-699</option>
+					<option value="5">Exception below 650</option>
+					</select> 
+					<small class="text-muted">My credit score is...</small> 
+					</div>
+
+					<div class="form-group">
+					<label for="propertyvalue">Existing mortgage?</label>
+					<input name="firstMortgage" id="firstMortgage" type="checkbox" data-toggle="collapse" data-target="#collapseOne" /> Yes
+					<br><small class="text-muted">Do you have a mortgage on the collateral property?</small><br>
+										<!-- If Yes-->
+						<div class="panel-group" id="accordion">
+						<div id="collapseOne" class="panel-collapse collapse">
+						
+							<div class="form-group"><br>
+							<label for="propertyvalue">Mortgage Balance</label>
+							<input type="text" name="propertyvalue" class="form-control" id="mortgageBalance"
+							placeholder="First mortgage balance...">
+							</div>
+
+							<div class="form-group"><br>
+							<label for="propertyvalue">Do you have a second mortgage?</label>
+							<input name="secondMortgage" id="secondMortgage" type="checkbox" data-toggle="collapse" data-target="#collapseTwo" /> Yes
+							<br><small class="text-muted">Do you have a second mortgage on the collateral property?</small><br>
+							</div>
+						
+							<div class="panel-group" id="accordion">
+							<div id="collapseTwo" class="panel-collapse collapse">
+							
+								<div class="form-group"><br>
+								<label for="propertyvalue">Second Mortgage Balance</label>
+								<input type="text" name="propertyvalue" class="form-control" id="secondMortgageBalance"
+								placeholder="Second mortgage balance...">
+								</div>
+							</div><!--CollapseTwo--> 
+							</div><!--accordion two--> 
+						</div><!--CollapseOne-->
+						</div> <!--main accordion-->
+					</div><!--form group-->
+	
+				</div> <!--end card body-->
+            </div>
+
+
+        	<!--Heloan Option-->
+			<div class="card mb-4 shadow-lg" style="width: 350px">
+				<div class="card-header">
+					<h6 class="title"><b>Discounts</b></h6>
+				</div>
+      			<div class="card-body">
+
+					<div class="form-group">
+						<small class="text-muted">Will you setup an auto debit for your loan?</small><br>
+						<label for="propertyvalue">Auto Debit Account?</label>
+						<input name="autoDebit" id="autoDebit" type="checkbox" /> Yes
+					</div>
+					
+					<div class="form-group">
+						<small class="text-muted">Are you a BMO Premier of Private Bank Customer?</small><br>
+						<label for="propertyvalue">Relationship Discount?</label>
+						<input name="relationshipDiscount" id="relationshipDiscount" type="checkbox" /> Yes
+					</div>
+
+			    </div> <!--End Card Body-->
+			</div>
+			  
+
+
+
+
+
+			</div> <!--container fluid-->
+				
+			<br><div class="row">
+				<div class="col">
+					<button type="button" onclick="storeValues()" class="btn btn-primary float-left">Submit</button>
+				</div>
+			</div><br>
+
+			<footer class="pt-4 my-md-5 pt-md-5 border-top" style="padding-left: 50px; padding-right:50px;">
+				<a onclick="myFunction()" href="#">Loan assumptions and disclosures (+)</a>
+				<div id="disclose" style="display: none;">
+					<div class="disclosures" id="disclosures-heloan">
+					<h5>Loan assumptions and disclosures</h5>
+					</div>
+				</div>
+
+				<div class="row">
+				<div class="col">
+					<img class="mb-2" src="footer.png" alt="" width="50" height="50">
+					<small class="d-block mb-3 text-muted">&copy; 2017-2020</small>
+				</div>
+				</div>
+			</footer>
+
+            
+        </div> <!--page content wrapper-->
+
+    </div> <!--wrapper-->
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
