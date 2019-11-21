@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+        
+  <title>Home Equity Lending</title>
+
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Our Custom CSS -->
+
+ <link href="css/style.css" rel="stylesheet">
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<style>
+
+.custom-centered{
+ margin:0 auto;
+ width:300px;
+}
+
+.btn-space {
+    margin-left: 25px;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+        content: ">";
+        color:cornflowerblue
+}
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: blue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: blue;
+  cursor: pointer;
+}
+
+</style>
+
+
+  <script>
+
+	
+
+	function storeValues() {
+
+	var zipcode = document.getElementById("zipcode");
+	var propertyvalue = document.getElementById("propertyvalue");
+	
+	var creditScoreSelector = document.getElementById("creditscore");
+	var creditscore = creditScoreSelector.options[creditScoreSelector.selectedIndex].text;
+
+	var propertyTypeSelector = document.getElementById("propertytype");
+	var propertyType = propertyTypeSelector.options[propertyTypeSelector.selectedIndex].text;
+
+	var autoDebitCheck = document.getElementById("autoDebit").checked;
+    var relationshipDiscountCheck = document.getElementById("relationshipDiscount").checked;
+	var firstMortgageCheck = document.getElementById("firstMortgage").checked;
+  	var mortgageBalance = document.getElementById("mortgageBalance");
+	var secondMortgageCheck = document.getElementById("secondMortgage").checked;
+	var secondMortgageBalance = document.getElementById("secondMortgageBalance");
+
+
+	sessionStorage.setItem("autoDebitCheck", autoDebitCheck);
+  	sessionStorage.setItem("relationshipDiscountCheck", relationshipDiscountCheck);
+	sessionStorage.setItem("firstMortgageCheck", firstMortgageCheck);
+	sessionStorage.setItem("mortgageBalance", mortgageBalance.value);
+	sessionStorage.setItem("secondMortgageCheck", secondMortgageCheck);
+	sessionStorage.setItem("secondMortgageBalance", secondMortgageBalance.value);	
+
+	sessionStorage.setItem("zipcode", zipcode.value);
+	sessionStorage.setItem("propertyvalue", propertyvalue.value);
+	sessionStorage.setItem("creditscore", creditscore);
+	sessionStorage.setItem("propertyType", propertyType);
+
+	buildLoanCriteriaObject();
+	window.location.assign("CustomQuote.html")
+	}
+
+	function buildLoanCriteriaObject() {
+
+		theObj = {
+		loanAmount: sessionStorage.getItem("loanAmount"),
+		autoDebitCheck: sessionStorage.getItem("autoDebitCheck"),
+		relationshipDiscountCheck: sessionStorage.getItem("relationshipDiscountCheck"),
+		firstMortgageCheck: sessionStorage.getItem("firstMortgageCheck"),
+		mortgageBalance: sessionStorage.getItem("mortgageBalance"),
+		secondMortgageCheck: sessionStorage.getItem("secondMortgageCheck"),
+		secondMortgageBalance: sessionStorage.getItem("secondMortgageBalance"),
+		zipcode: sessionStorage.getItem("zipcode"),
+		propertyvalue: sessionStorage.getItem("propertyvalue"),
+		creditscore: sessionStorage.getItem("creditscore"),
+		propertyType: sessionStorage.getItem("propertyType")
+		};
+
+		theJSON = JSON.stringify(theObj)
+		sessionStorage.setItem("loanCriteria", theJSON);
+	}
+
+    </script>
+</head>
+
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color:#0079c1;">
+         
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+          <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/personal">Personal <span class="sr-only">(current)</span></a>
+          <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Wealth</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Business</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Commercial</a>
+            <a class="nav-link" style="color:ghostwhite" href="https://www.bmoharris.com/main/business-banking/">Capital Markets</a>
+
+          </div> 
+        </nav>
+      <img src="BankABCLogo.png" alt="" height="100" >
+
+        
+        <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: white;">
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal"><small>Personal</small></a></li>
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal/loans-and-lines-of-credit"><small>Loans and Lines of Credit</small></a></li>
+            <li class="breadcrumb-item"><a href="https://www.bmoharris.com/main/personal/loans-and-lines-of-credit/home-equity-line-of-credit"><small>Home Equity Line of Credit</small></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><small>Custom Quote</small></li>
+        </ol>
+        </nav>
+    
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar" class="bg-light">
+            <div class="sidebar-header" style="color: gray">
+                <h5 class="display-5" style="text-align: center">Your Loan Info</h5>
+            </div>
+
+            <ul class="list-unstyled components">
+
+            <div class="form-group btn-space">
+                <small class="text-muted">ZIP Code:</small>
+                <input type="text" style="width: 200px" class="form-control" id="zipcodeSB">
+			</div>
+			
+			<div class="form-group btn-space">
+				<small class="text-muted">Property Type:</small>
+				<select class="custom-select" style="width: 200px" id="propertytypeSB" required>
+					<option value="primary">Primary Residence</option>
+					<option value="investment">Investment Property</option>
+					<option value="secondHome">Second Home</option>
+				</select>
+			</div>
+
+			<div class="form-group btn-space">
+				<small class="text-muted">Credit Score:</small>
+				<select class="custom-select" style="width: 200px" id="creditscoreSB" required>
+				<option value="1">780+</option>
+				<option value="2">740-799</option>
+				<option value="3">700-739</option>
+				<option value="4">650-699</option>
+				<option value="5">Exception below 650</option>
+				</select> 
+			</div>
+
+            <div class="form-group btn-space">
+                <small class="text-muted">Estimated Home Value:</small>
+                <input type="text" style="width: 200px" class="form-control" id="propertyvalueSB">
+            </div>
+
+			<div class="form-group btn-space">
+                <small class="text-muted">First Mortgage Balance:</small>
+                <input type="text" style="width: 200px" class="form-control" id="firstMortgageBalSB"><br>
+			</div>
+			
+			<div class="form-group btn-space">
+                <small class="text-muted">Second Mortgage Balance:</small>
+                <input type="text" style="width: 200px" class="form-control" id="secondMortgageBalSB"><br>
+            </div>
+
+            </ul>
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Update</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="page-content-wrapper">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary btn-space">
+                <i class="fas fa-align-left"></i>
+                <span>Toggle Loan Info</span>
+            </button><br><br>
+
+            <div class="container-fluid">
+
+          <!--Standard Option-->
+          <div class="card-deck mb-3 text-center">
+
+                <div class="card mb-4 shadow-lg">
+                  <div class="card-header">
+                      <h6 class="title"><b>Home Equity Line of Credit</b></h6>
+                  </div>
+                  <div class="card-body">
+                      <ul class="list-unstyled mt-3 mb-4">  
+              
+                      <div class="card-text text-muted" style="height: 100px;"><small>With a HELOC, you only pay interest on what you actually borrow. Plus, you have the flexibility to lock in all or part of your line at a fixed rate with a fixed payment.</small></div>
+                
+                      <div class="alignright"><b>Avaliable amount: $<span id="avaliable1">100,000</span></b></div>
+                      <div class="alignright"><b>Borrowed amount: $112,000</b></div>
+                  <br>
+                  
+                  <div class="row">
+                    <div class="col">
+                      <li>Variable</li><br>
+                      <li><small class="text-muted">Rate as low as</small></li>
+                      <li><p id="apr1a"/><b>5.56% APR</b></li>
+                      <br>
+                      <li><small class="text-muted">Payment</small></li>
+                      <li><p id="payment1a"/><b>$351.79</b></li>
+                    </div>
+                    
+                    <span class="border-left"></span>
+
+                    <div class="col">
+                      <li>Fixed</li><br>
+                      <li><small class="text-muted">Rate as low as</small></li>
+                      <li><p id="apr2a"/><b>6.09% APR</b></li>
+                      <br>
+                      <li><small class="text-muted">Payment</small></li>
+                      <li><p id="payment2a"/><b>$541.79</b></li>
+                    </div>
+                  </div>
+                </ul>
+                  
+                      <button type="button" class="btn btn-lg btn-block btn-outline-primary"
+                  onClick="parent.location='https://homelending.bmoharris.com/#/milestones?app_source=BMODigital&loanType=HELOAN'" >Apply Now</button>
+                  </div>
+            </div>
+				
+            <!--Recommended Option-->
+            <div class="card mb-4 shadow-lg">
+            
+            <div class="card-header">
+                  <h6 class="title"><b>Home Equity Line of Credit</b></h6>
+              </div>
+            <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+            <div class="card-text text-muted" style="height: 100px;"><small>With a HELOC, you only pay interest on what you actually borrow. Plus, you have the flexibility to lock in all or part of your line at a fixed rate with a fixed payment.</small></div>
+            
+                  <div class="alignright"><b>Avaliable amount: $100,000</b></div>
+                  <div class="alignright"><b>Borrowed amount: $<span id="avaliable2" /></b></div>
+            <br>
+                  <div class="row">
+                        <div class="col">
+                          <li>Variable</li><br>
+                <li><small class="text-muted">Rate as low as</small></li>
+                <li><p id="apr1b"/><b>4.56% APR</b></li>
+                <br>
+                <li><small class="text-muted">Payment</small></li>
+                <li><p id="payment1b"/><b>$532.79</b></li>
+              </div>
+
+              <span class="border-left"></span>
+              
+              <div class="col">
+                <li>Fixed</li><br>
+                <li><small class="text-muted">Rate as low as</small></li>
+                <li><p id="apr2b" /><b>5.06% APR</b></li>
+                <br>
+                <li><small class="text-muted">Payment</small></li>
+                <li><p id="payment2b" /><b>$826.89</b></li>
+              </div>
+                  </div>
+              </ul>
+
+              <button type="button" class="btn btn-lg btn-block btn-primary"
+              onClick="parent.location='https://homelending.bmoharris.com/#/milestones?app_source=BMODigital&loanType=HELOAN'">Apply Now</button>
+              </div>
+          </div>
+
+
+        <!--Heloan Option-->
+    			<div class="card mb-4 shadow-lg">
+      			<div class="card-header">
+        				<h6 class="title"><b>Home Equity Loan</b></h6>
+      			</div>
+      			<div class="card-body">
+					<ul class="list-unstyled mt-3 mb-4">
+					<div class="card-text text-muted" style="height: 100px;"><small>With a home equity loan, you borrow all of your funds upfront at a fixed rate and term. Your payments will stay the same for the life of your loan.</small></div>
+					
+          			<div class="alignright"><b>Loan amount: $100,000</b></div>
+          			<div class="alignright"><b><br></b></div>
+						<br>
+          			<div class="row">
+
+						
+						<div class="col">
+						<li>Fixed</li><br>
+						<li><small class="text-muted">Rate as low as</small></li>
+						<li><p id="apr1c"/><b>5.06% APR</b></li>
+						<br>
+						<li><small class="text-muted">Payment</small></li>
+						<li><p id="payment2b"/><b>$826.89</b></li>
+						</div>
+          			</div>
+						</ul>
+						 
+						<button type="button" class="btn btn-lg btn-block btn-outline-primary"
+						onClick="parent.location='https://homelending.bmoharris.com/#/milestones?app_source=BMODigital&loanType=HELOAN'" >Apply Now</button>
+      			</div>
+			    </div>
+  		    </div>
+
+			</div> <!--container fluid-->
+				
+
+
+			<footer class="pt-4 my-md-5 pt-md-5 border-top" style="padding-left: 50px; padding-right:50px;">
+				<a onclick="myFunction()" href="#">Loan assumptions and disclosures (+)</a>
+				<div id="disclose" style="display: none;">
+					<div class="disclosures" id="disclosures-heloan">
+					<h5>Loan assumptions and disclosures</h5>
+					</div>
+				</div>
+
+				<div class="row">
+				<div class="col">
+					<img class="mb-2" src="footer.png" alt="" width="50" height="50">
+					<small class="d-block mb-3 text-muted">&copy; 2017-2020</small>
+				</div>
+				</div>
+			</footer>
+
+            
+        </div> <!--page content wrapper-->
+
+    </div> <!--wrapper-->
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
